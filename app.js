@@ -17,30 +17,30 @@ const conexao = connection
   .done();
 
 //* Criando a Tabela no Banco de Dados
-const Artigos = connection.define("artigos", {
-  titulo: Sequelize.STRING,
-  assunto: Sequelize.TEXT,
+const Diagramas = connection.define("diagramas", {
+  nome: Sequelize.STRING,
+  disciplina: Sequelize.STRING,
 });
 
 //? Evita de Criar novas Tabelas no Banco de Dados ao Executar
 // connection.sync().then(function () {
-//   Artigos.create({
-//     titulo: "Manipulando Sequelize",
-//     assunto: "Manipulação de Objetos no Sequelize",
+//   Diagramas.create({
+//     nome: "Aquiles Falcão",
+//     disciplina: "Matemática",
 //   });
 // });
 
 //! Método findAll
 connection.sync().then(function () {
-  const artigos = Artigos.findAll().then(function (artigos) {
+  const diagramas = Diagramas.findAll().then(function (diagramas) {
     console.log(
       "===================================================================================================================="
     );
-    console.log("Quantidade: " + artigos.length);
-    artigos.forEach((element) => {
-      console.log(element.titulo + " - " + element.assunto);
+    console.log("Quantidade: " + diagramas.length);
+    diagramas.forEach((element) => {
+      console.log(element.nome + " - " + element.disciplina);
     });
-    console.log(artigos[0]);
+    console.log(diagramas[0]);
   });
 });
 
@@ -49,9 +49,11 @@ console.log(
   "===================================================================================================================="
 );
 connection.sync().then(function () {
-  Artigos.findOne({ where: { titulo: "manipulando Sequelize" } }).then(
-    function (artigo) {
-      console.log("Título: " + artigo.titulo + " - Assunto: " + artigo.assunto);
-    }
-  );
+  Diagramas.findOne({ where: { nome: "Arthur Trajano" } }).then(function (
+    diagramas
+  ) {
+    console.log(
+      "Nome: " + diagramas.nome + " - Disciplina: " + diagramas.disciplina
+    );
+  });
 });
