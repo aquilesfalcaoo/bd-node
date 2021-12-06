@@ -32,5 +32,4 @@ Object.keys(db).forEach(modelName => {
 });
 
 db.sequelize = sequelize;
-console.log(db.Diagramas);
 module.exports = db;
