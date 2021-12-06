@@ -8,13 +8,14 @@ const connection = new Sequelize("db_demo", "root", "root", {
 //* Realizando a Conexão
 const conexao = connection
   .authenticate()
-  .then(function () {
+  .then(function (cn) {
     console.log("Conexão realizada com sucesso!");
+    return cn;
   })
   .catch(function (err) {
     console.log("Não foi possível se conectar!");
+    throw err;
   })
-  .done();
 
 //* Criando a Tabela no Banco de Dados
 const Diagramas = connection.define("diagramas", {
